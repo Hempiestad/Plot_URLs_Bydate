@@ -1,5 +1,7 @@
 # Plot_URLs_Bydate
 a script that will take an excel sheet with a URL column and a Date Column and create a graph.
+This script was written with the assistance of ChatGTP.
+
 The script achives this bydoing the following:
 1.Read the Excel sheet into a pandas DataFrame.
 2.Convert the "Last Visited-Time" column to datetime format.
