@@ -1,0 +1,33 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Read the Excel file into a pandas DataFrame
+excel_file = r'excel sheet location path.xlsx'
+df = pd.read_excel(excel_file)
+
+# Convert the "Last Visited-Time" column to datetime format
+df['Last Visited-Time'] = pd.to_datetime(df['Last Visited-Time'], format='%m/%d/%Y %I:%M:%S %p(UTC-4)')
+
+# Extract the date part from the datetime column
+df['Date'] = df['Last Visited-Time'].dt.date
+
+# Group the data by date and count the number of URLs visited per day
+url_count_per_day = df.groupby('Date').size()
+
+# Plotting the data
+plt.figure(figsize=(10, 6))
+url_count_per_day.plot(kind='bar', color='skyblue')
+plt.title('Number of URLs Visited per Day')
+plt.xlabel('Date')
+plt.ylabel('Number of URLs Visited')
+
+# Rotate x-axis labels for better readability
+plt.xticks(rotation=45, ha='right')  # ha='right' aligns the labels properly
+plt.tight_layout()
+
+# Save the graph to a file location
+output_file = r'where you want the image of the graph saved.png'
+plt.savefig(output_file)
+
+# Show the graph
+plt.show()
